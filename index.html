@@ -20,7 +20,7 @@ header{
   grid-column:1 / -1;
   padding:14px 20px;
   background:#05618d;
-  color:#fff;
+  color:#ffffff;
   font-weight:600;
 }
 
@@ -54,43 +54,40 @@ nav li:hover{
   background:#e9ecef;
 }
 
-nav .back{
-  font-size:12px;
-  color:#05618d;
-  margin-bottom:12px;
-  cursor:pointer;
+nav li.active{
+  background:#05618d;
+  color:#fff;
 }
 
 main{
-  height:calc(100vh - 56px);
-  overflow:hidden;
+  padding:40px;
 }
-
-.iframe-wrapper{
-  height:100%;
-  overflow:auto;
-}
-
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  display:block;
-}
-
-
 
 .placeholder{
-  padding:40px;
   color:#6c757d;
   font-size:14px;
+}
+.playbook-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.playbook-list li{
+  margin-bottom:10px;
+  cursor:pointer;
+  color:#05618d;
+}
+.playbook-list li:hover{
+  text-decoration:underline;
 }
 </style>
 </head>
 
 <body>
 
-<header>Scheer Playbooks</header>
+<header>
+  Scheer Playbooks
+</header>
 
 <nav id="nav">
   <h3>Rollen</h3>
@@ -105,7 +102,7 @@ iframe{
 
 <main id="content">
   <div class="placeholder">
-    Kies een rol om beschikbare playbooks te bekijken.
+    Kies links een rol om beschikbare playbooks te zien.
   </div>
 </main>
 
@@ -129,33 +126,22 @@ const playbooksByRole = {
 };
 
 function selectRole(role){
-  const nav = document.getElementById("nav");
-  const items = playbooksByRole[role];
+  document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
+  event.target.classList.add('active');
 
-  let html = `<div class="back" onclick="showRoles()">← Terug naar rollen</div>`;
-  html += `<h3>Playbooks</h3><ul>`;
+  const items = playbooksByRole[role] || [];
+  let html = `<h3>Playbooks</h3><ul class="playbook-list">`;
 
   items.forEach(pb => {
-    html += `<li onclick="loadPlaybook('${pb.path}')">${pb.title}</li>`;
+    html += `<li onclick="openPlaybook('${pb.path}')">${pb.title}</li>`;
   });
 
   html += `</ul>`;
-  nav.innerHTML = html;
-
-  document.getElementById("content").innerHTML =
-    `<div class="placeholder">Selecteer een playbook.</div>`;
+  document.getElementById("content").innerHTML = html;
 }
 
-function showRoles(){
-  location.reload();
-}
-
-function loadPlaybook(path){
-  document.getElementById("content").innerHTML = `
-    <div class="iframe-wrapper">
-      <iframe src="${path}"></iframe>
-    </div>
-  `;
+function openPlaybook(path){
+  window.location.href = path;
 }
 </script>
 
