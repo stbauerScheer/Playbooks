@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scheer Playbooks</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  height:100vh;
+  display:grid;
+  grid-template-columns:240px 1fr;
+  grid-template-rows:56px 1fr;
+}
+
+header{
+  grid-column:1 / -1;
+  padding:14px 20px;
+  border-bottom:1px solid #ddd;
+  font-weight:600;
+  background:#05618d;
+  color:#ffffff;
+}
+
+nav{
+  border-right:1px solid #ddd;
+  padding:20px;
+  background:#f8f9fa;
+}
+
+nav h3{
+  margin-top:0;
+  font-size:14px;
+  text-transform:uppercase;
+  color:#6c757d;
+}
+
+nav ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+nav li{
+  margin-bottom:10px;
+  cursor:pointer;
+  padding:6px 8px;
+  border-radius:4px;
+}
+
+nav li:hover{
+  background:#e9ecef;
+}
+
+main{
+  padding:0;
+  height:100%;
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+.placeholder{
+  padding:40px;
+  color:#6c757d;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  Scheer Playbooks
+</header>
+
+<nav>
+  <h3>Rollen</h3>
+  <ul>
+    <li onclick="loadBranding()">Marketing</li>
+    <li onclick="loadBranding()">Sales</li>
+    <li onclick="loadBranding()">BDR</li>
+    <li onclick="loadBranding()">Info</li>
+    <li onclick="loadBranding()">Delivery</li>
+  </ul>
+</nav>
+
+<main>
+  <div id="content" class="placeholder">
+    Selecteer een rol om een playbook te openen.
+  </div>
+</main>
+
+<script>
+function loadBranding(){
+  const container = document.getElementById("content");
+  container.innerHTML = `
+    <iframe src="playbooks/branding/index.html"></iframe>
+  `;
+}
+</script>
+
+</body>
+</html>

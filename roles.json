@@ -1,0 +1,29 @@
+{
+  "roles": [
+    {
+      "id": "info",
+      "label": "Info",
+      "description": "General context and positioning. Provides background and shared understanding."
+    },
+    {
+      "id": "bdr",
+      "label": "BDR",
+      "description": "Fast recognition, pitches, customer names and triggers for outreach."
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing",
+      "description": "Messaging, branding, positioning and content creation."
+    },
+    {
+      "id": "sales",
+      "label": "Sales",
+      "description": "Value propositions, customer cases and message combinations."
+    },
+    {
+      "id": "delivery",
+      "label": "Delivery",
+      "description": "Methodology, programs and execution guidance."
+    }
+  ]
+}

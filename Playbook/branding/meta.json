@@ -1,0 +1,8 @@
+{
+  "id": "branding",
+  "title": "Why Scheer Branding",
+  "roles": ["Info", "Marketing", "Sales", "BDR"],
+  "tags": ["branding", "positioning", "messaging"],
+  "owner": "Marketing",
+  "status": "active"
+}
