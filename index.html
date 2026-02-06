@@ -12,17 +12,16 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
   height:100vh;
   display:grid;
-  grid-template-columns:240px 1fr;
+  grid-template-columns:260px 1fr;
   grid-template-rows:56px 1fr;
 }
 
 header{
   grid-column:1 / -1;
   padding:14px 20px;
-  border-bottom:1px solid #ddd;
-  font-weight:600;
   background:#05618d;
-  color:#ffffff;
+  color:#fff;
+  font-weight:600;
 }
 
 nav{
@@ -33,7 +32,7 @@ nav{
 
 nav h3{
   margin-top:0;
-  font-size:14px;
+  font-size:13px;
   text-transform:uppercase;
   color:#6c757d;
 }
@@ -45,18 +44,24 @@ nav ul{
 }
 
 nav li{
-  margin-bottom:10px;
-  cursor:pointer;
+  margin-bottom:8px;
   padding:6px 8px;
   border-radius:4px;
+  cursor:pointer;
 }
 
 nav li:hover{
   background:#e9ecef;
 }
 
+nav .back{
+  font-size:12px;
+  color:#05618d;
+  margin-bottom:12px;
+  cursor:pointer;
+}
+
 main{
-  padding:0;
   height:100%;
 }
 
@@ -65,6 +70,7 @@ iframe{
   height:100%;
   border:none;
 }
+
 .placeholder{
   padding:40px;
   color:#6c757d;
@@ -75,33 +81,69 @@ iframe{
 
 <body>
 
-<header>
-  Scheer Playbooks
-</header>
+<header>Scheer Playbooks</header>
 
-<nav>
+<nav id="nav">
   <h3>Rollen</h3>
   <ul>
-    <li onclick="loadBranding()">Marketing</li>
-    <li onclick="loadBranding()">Sales</li>
-    <li onclick="loadBranding()">BDR</li>
-    <li onclick="loadBranding()">Info</li>
-    <li onclick="loadBranding()">Delivery</li>
+    <li onclick="selectRole('marketing')">Marketing</li>
+    <li onclick="selectRole('sales')">Sales</li>
+    <li onclick="selectRole('bdr')">BDR</li>
+    <li onclick="selectRole('info')">Info</li>
+    <li onclick="selectRole('delivery')">Delivery</li>
   </ul>
 </nav>
 
-<main>
-  <div id="content" class="placeholder">
-    Selecteer een rol om een playbook te openen.
+<main id="content">
+  <div class="placeholder">
+    Kies een rol om beschikbare playbooks te bekijken.
   </div>
 </main>
 
 <script>
-function loadBranding(){
-  const container = document.getElementById("content");
-  container.innerHTML = `
-    <iframe src="playbooks/branding/index.html"></iframe>
-  `;
+const playbooksByRole = {
+  marketing: [
+    { title: "Why Scheer Branding", path: "playbooks/branding/index.html" }
+  ],
+  sales: [
+    { title: "Why Scheer Branding", path: "playbooks/branding/index.html" }
+  ],
+  bdr: [
+    { title: "Why Scheer Branding", path: "playbooks/branding/index.html" }
+  ],
+  info: [
+    { title: "Why Scheer Branding", path: "playbooks/branding/index.html" }
+  ],
+  delivery: [
+    { title: "Why Scheer Branding", path: "playbooks/branding/index.html" }
+  ]
+};
+
+function selectRole(role){
+  const nav = document.getElementById("nav");
+  const items = playbooksByRole[role];
+
+  let html = `<div class="back" onclick="showRoles()">← Terug naar rollen</div>`;
+  html += `<h3>Playbooks</h3><ul>`;
+
+  items.forEach(pb => {
+    html += `<li onclick="loadPlaybook('${pb.path}')">${pb.title}</li>`;
+  });
+
+  html += `</ul>`;
+  nav.innerHTML = html;
+
+  document.getElementById("content").innerHTML =
+    `<div class="placeholder">Selecteer een playbook.</div>`;
+}
+
+function showRoles(){
+  location.reload();
+}
+
+function loadPlaybook(path){
+  document.getElementById("content").innerHTML =
+    `<iframe src="${path}"></iframe>`;
 }
 </script>
 
