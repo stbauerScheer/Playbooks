@@ -11,13 +11,12 @@
   --blue:#2996cc;
   --orange:#ef7c00;
   --dunkelgrau:#6a747f;
-  --dunkelrot:#ac1e1c;
   --bg:#ffffff;
   --card:#f8f9fa;
   --muted:#6c757d;
   --text:#212529;
   --line:#dee2e6;
-  --badge-bg:rgba(41, 150, 204, 0.15);
+  --badge-bg:rgba(41,150,204,0.15);
   --badge-text:#05618d;
 }
 *{box-sizing:border-box}
@@ -29,27 +28,57 @@ body{
 }
 header{
   padding:28px 20px;
-  border-bottom:1px solid var(--line);
   background:var(--dunkelblau);
+  color:#fff;
 }
-h1{margin:0;font-size:26px;color:#ffffff;}
-.sub{margin-top:8px;color:#ffffff;font-size:13px;opacity:0.95;}
+h1{margin:0;font-size:26px;}
+.sub{margin-top:8px;font-size:13px;opacity:.95;}
 .wrap{max-width:1100px;margin:0 auto}
-main{padding:24px 20px 40px}
-h2{margin-top:40px;color:var(--blue);}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+nav{
+  margin-top:16px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+nav button{
+  background:rgba(255,255,255,0.15);
+  border:none;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:4px;
+  cursor:pointer;
+}
+nav button.active{
+  background:#fff;
+  color:var(--dunkelblau);
+}
+main{padding:32px 20px}
+.section{display:none}
+.section.active{display:block}
+h2{color:var(--blue);margin-top:0}
+.section-intro{
+  color:var(--muted);
+  max-width:900px;
+  padding-left:16px;
+  border-left:3px solid var(--blue);
+  margin-bottom:24px;
+  line-height:1.6;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:14px;
+}
 .card{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:14px;
   padding:18px;
-  transition:all 0.2s;
 }
 .card h3{
   margin-top:0;
   font-size:16px;
   color:var(--dunkelblau);
-  font-weight:600;
 }
 .prompt{
   white-space:pre-line;
@@ -67,50 +96,12 @@ h2{margin-top:40px;color:var(--blue);}
   color:var(--badge-text);
   background:var(--badge-bg);
 }
-nav{margin-top:20px;}
-nav ul{
-  list-style:none;
-  padding-left:0;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-nav a{
-  color:#ffffff;
-  text-decoration:none;
-  font-weight:500;
-  padding:4px 8px;
-  border-radius:4px;
-}
-nav a:hover{background:rgba(255,255,255,0.15);}
-.search-filter-wrap{
-  margin-top:20px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.search-filter-wrap input,
-.search-filter-wrap select{
-  padding:10px 12px;
-  border-radius:8px;
-  border:1px solid var(--line);
-  font-size:14px;
-}
-.section-intro{
-  color:var(--muted);
-  max-width:900px;
-  padding-left:16px;
-  border-left:3px solid var(--blue);
-  margin-bottom:20px;
-  line-height:1.6;
-}
 footer{
-  margin-top:60px;
   padding:24px 20px;
   background:var(--dunkelgrau);
+  color:#fff;
+  font-size:12px;
 }
-footer .footer-content{max-width:1100px;margin:0 auto;}
-footer .copyright{color:var(--muted);font-size:12px;}
 </style>
 </head>
 
@@ -118,84 +109,89 @@ footer .copyright{color:var(--muted);font-size:12px;}
 
 <header>
   <div class="wrap">
-    <h1>Scheer IDS – Why Scheer Branding Playbook</h1>
+    <h1>Why Scheer Branding</h1>
     <div class="sub">
-      Zeven kernboodschappen die Scheer IDS positioneren als de juiste partner voor SAP S/4HANA Cloud Public Edition.<br>
-      Gebruik deze prompts voor klantgerichte waardeproposities, salesmateriaal en positionering.
+      Zeven kernboodschappen die Scheer IDS positioneren als partner voor
+      SAP S/4HANA Cloud Public Edition.
     </div>
 
     <nav>
-      <ul>
-        <li><a href="#overview">Overzicht</a></li>
-        <li><a href="#public-edition-focus">Public Edition focus</a></li>
-        <li><a href="#core-messages">7 kernboodschappen</a></li>
-        <li><a href="#combinations">Combinaties</a></li>
-      </ul>
+      <button onclick="showSection('overview')" id="btn-overview">Overzicht</button>
+      <button onclick="showSection('public')" id="btn-public">Public Edition focus</button>
+      <button onclick="showSection('messages')" id="btn-messages">7 kernboodschappen</button>
+      <button onclick="showSection('combinations')" id="btn-combinations">Combinaties</button>
     </nav>
   </div>
 </header>
 
-<div class="wrap search-filter-wrap">
-  <input id="searchInput" type="text" placeholder="Zoek op tekst, prompts, keywords…">
-  <select id="sectionFilter">
-    <option value="all">Alle secties</option>
-    <option value="overview">Overzicht</option>
-    <option value="public-edition-focus">Public Edition focus</option>
-    <option value="core-messages">Kernboodschappen</option>
-    <option value="combinations">Combinaties</option>
-  </select>
-</div>
-
 <main>
 <div class="wrap">
 
-<section data-section="overview">
-<h2 id="overview">Waarom dit playbook bestaat</h2>
-<p class="section-intro">
-Het kiezen van de juiste SAP-partner gaat allang niet meer over “ERP implementeren”.
-Organisaties zoeken een partner die hun business begrijpt, voorspelbaar levert,
-structurele stabiliteit borgt en digitale wendbaarheid mogelijk maakt — zonder afhankelijkheid.
-<br><br>
-Dit playbook bevat zeven kernboodschappen die uitleggen waarom Scheer IDS die partner is.
-Elke boodschap bevat een vaste promptstructuur die aangepast kan worden aan de context van de klant.
-</p>
+<section id="overview" class="section">
+  <h2>Waarom dit playbook bestaat</h2>
+  <p class="section-intro">
+    Het kiezen van een SAP-partner gaat niet over implementeren alleen.
+    Organisaties zoeken voorspelbaarheid, stabiliteit en langdurige wendbaarheid.
+    Dit playbook maakt duidelijk waarom Scheer IDS die partner is.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="badge">Samenvatting</span>
+      <h3>Eén zin positionering</h3>
+      <div class="prompt">
+Scheer IDS levert clean-core ERP op basis van SAP best practices,
+maakt klanten zelfstandig en bouwt cloud-native organisaties
+die ook na go-live stabiel en toekomstvast blijven.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="public" class="section">
+  <h2>Focus op SAP S/4HANA Cloud Public Edition</h2>
+  <p class="section-intro">
+    Scheer IDS werkt exclusief met SAP S/4HANA Cloud Public Edition
+    en kiest bewust voor standaardisatie, discipline en voorspelbaarheid.
+  </p>
+</section>
+
+<section id="messages" class="section">
+  <h2>De zeven kernboodschappen</h2>
+  <p class="section-intro">
+    Deze boodschappen vormen de basis voor positionering,
+    salesgesprekken en marketingcommunicatie.
+  </p>
+</section>
+
+<section id="combinations" class="section">
+  <h2>Combinaties</h2>
+  <p class="section-intro">
+    Gebruik combinaties van boodschappen om in te spelen
+    op specifieke klantcontexten en sectoren.
+  </p>
 </section>
 
 </div>
 </main>
 
 <footer>
-  <div class="footer-content">
-    <div class="copyright">
-      Scheer IDS Nederland – Why Scheer Branding Playbook<br>
-      Living document – regelmatig bijgewerkt<br>
-      © Scheer Group
-    </div>
+  <div class="wrap">
+    © Scheer IDS Nederland – Living document
   </div>
 </footer>
 
 <script>
-(function(){
-  const searchInput = document.getElementById('searchInput');
-  const sectionFilter = document.getElementById('sectionFilter');
-  const cards = Array.from(document.querySelectorAll('.card'));
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
 
-  function filter(){
-    const q = searchInput.value.toLowerCase();
-    const section = sectionFilter.value;
+  document.getElementById(id).classList.add('active');
+  document.getElementById('btn-' + id)?.classList.add('active');
+}
 
-    cards.forEach(card => {
-      const text = card.innerText.toLowerCase();
-      const cardSection = card.closest('section')?.getAttribute('data-section');
-      card.style.display =
-        text.includes(q) && (section === 'all' || cardSection === section)
-        ? '' : 'none';
-    });
-  }
-
-  searchInput.addEventListener('input', filter);
-  sectionFilter.addEventListener('change', filter);
-})();
+// startpagina
+showSection('overview');
 </script>
 
 </body>
