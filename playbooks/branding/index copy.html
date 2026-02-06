@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scheer IDS – Why Scheer Branding Playbook</title>
+
+<style>
+:root{
+  --dunkelblau:#05618d;
+  --blue:#2996cc;
+  --orange:#ef7c00;
+  --dunkelgrau:#6a747f;
+  --bg:#ffffff;
+  --card:#f8f9fa;
+  --muted:#6c757d;
+  --text:#212529;
+  --line:#dee2e6;
+  --badge-bg:rgba(41,150,204,0.15);
+  --badge-text:#05618d;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header{
+  padding:28px 20px;
+  background:var(--dunkelblau);
+  color:#fff;
+}
+h1{margin:0;font-size:26px;}
+.sub{margin-top:8px;font-size:13px;opacity:.95;}
+.wrap{max-width:1100px;margin:0 auto}
+nav{
+  margin-top:16px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+nav button{
+  background:rgba(255,255,255,0.15);
+  border:none;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:4px;
+  cursor:pointer;
+}
+nav button.active{
+  background:#fff;
+  color:var(--dunkelblau);
+}
+main{padding:32px 20px}
+.section{display:none}
+.section.active{display:block}
+h2{color:var(--blue);margin-top:0}
+.section-intro{
+  color:var(--muted);
+  max-width:900px;
+  padding-left:16px;
+  border-left:3px solid var(--blue);
+  margin-bottom:24px;
+  line-height:1.6;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:14px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+.card h3{
+  margin-top:0;
+  font-size:16px;
+  color:var(--dunkelblau);
+}
+.prompt{
+  white-space:pre-line;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.badge{
+  display:inline-block;
+  margin-bottom:8px;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid var(--blue);
+  color:var(--badge-text);
+  background:var(--badge-bg);
+}
+footer{
+  padding:24px 20px;
+  background:var(--dunkelgrau);
+  color:#fff;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Why Scheer Branding</h1>
+    <div class="sub">
+      Zeven kernboodschappen die Scheer IDS positioneren als partner voor
+      SAP S/4HANA Cloud Public Edition.
+    </div>
+
+    <nav>
+      <button onclick="showSection('overview')" id="btn-overview">Overzicht</button>
+      <button onclick="showSection('public')" id="btn-public">Public Edition focus</button>
+      <button onclick="showSection('messages')" id="btn-messages">7 kernboodschappen</button>
+      <button onclick="showSection('combinations')" id="btn-combinations">Combinaties</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<section id="overview" class="section">
+  <h2>Waarom dit playbook bestaat</h2>
+  <p class="section-intro">
+    Het kiezen van een SAP-partner gaat niet over implementeren alleen.
+    Organisaties zoeken voorspelbaarheid, stabiliteit en langdurige wendbaarheid.
+    Dit playbook maakt duidelijk waarom Scheer IDS die partner is.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="badge">Samenvatting</span>
+      <h3>Eén zin positionering</h3>
+      <div class="prompt">
+Scheer IDS levert clean-core ERP op basis van SAP best practices,
+maakt klanten zelfstandig en bouwt cloud-native organisaties
+die ook na go-live stabiel en toekomstvast blijven.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="public" class="section">
+  <h2>Focus op SAP S/4HANA Cloud Public Edition</h2>
+  <p class="section-intro">
+    Scheer IDS werkt exclusief met SAP S/4HANA Cloud Public Edition
+    en kiest bewust voor standaardisatie, discipline en voorspelbaarheid.
+  </p>
+</section>
+
+<section id="messages" class="section">
+  <h2>De zeven kernboodschappen</h2>
+  <p class="section-intro">
+    Deze boodschappen vormen de basis voor positionering,
+    salesgesprekken en marketingcommunicatie.
+  </p>
+</section>
+
+<section id="combinations" class="section">
+  <h2>Combinaties</h2>
+  <p class="section-intro">
+    Gebruik combinaties van boodschappen om in te spelen
+    op specifieke klantcontexten en sectoren.
+  </p>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    © Scheer IDS Nederland – Living document
+  </div>
+</footer>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  document.getElementById('btn-' + id)?.classList.add('active');
+}
+
+// startpagina
+showSection('overview');
+</script>
+
+</body>
+</html>
